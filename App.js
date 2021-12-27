@@ -1,6 +1,13 @@
-import React from 'react';
-import type {Node} from 'react';
-import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  Button,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+  NativeModules,
+} from 'react-native';
 
 import i18n from 'i18next';
 import translations from './translations';
@@ -12,13 +19,30 @@ i18n.use(initReactI18next).init({
   debug: true,
 });
 
-const App: () => Node = () => {
+const App = () => {
   const {t} = useTranslation();
+  const [deviceLanguage, setDeviceLanguage] = React.useState('');
 
   const backgroundStyle = {
     backgroundColor: 'white',
     flex: 1,
   };
+
+  useEffect(() => {
+    let locale = 'en';
+    if (Platform.OS === 'ios') {
+      // from iOS 13: NativeModules.SettingsManager.settings.AppleLanguages[0]
+      locale =
+        NativeModules.SettingsManager.settings.AppleLocale ||
+        NativeModules.SettingsManager.settings.AppleLanguages[0];
+    } else {
+      locale = NativeModules.I18nManager.localeIdentifier;
+    }
+    // Reducing the locale to the first 2 letters (e.g. 'en-US' -> 'en')
+    setDeviceLanguage(locale);
+    locale = locale.substr(0, 2);
+    i18n.changeLanguage(locale);
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -45,6 +69,7 @@ const App: () => Node = () => {
             <Text style={{fontSize: 40}}>{t('welcome')}</Text>
             <Text style={{fontSize: 60}}>{t('food')}</Text>
             <Text>{'Current language key: ' + i18n.language}</Text>
+            <Text>{'Device language key: ' + deviceLanguage}</Text>
           </View>
           <View style={{flex: 2}}>
             <Button
