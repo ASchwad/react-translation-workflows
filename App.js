@@ -3,28 +3,10 @@ import type {Node} from 'react';
 import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 
 import i18n from 'i18next';
+import translations from './translations';
 import {useTranslation, initReactI18next, withTranslation} from 'react-i18next';
 i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: {
-        welcome: 'Welcome!',
-        food: '🍔',
-      },
-    },
-    de: {
-      translation: {
-        welcome: 'Willkommen!',
-        food: '🥨',
-      },
-    },
-    fr: {
-      translation: {
-        welcome: 'Bienvenue!',
-        food: '🥖',
-      },
-    },
-  },
+  resources: translations,
   lng: 'en',
   fallbackLng: 'en',
   debug: true,

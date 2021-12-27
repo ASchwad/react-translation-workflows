@@ -1,0 +1,20 @@
+{
+    "en": {
+      "translation": {
+        "welcome": "Welcome!",
+        "food": "🍔"
+      }
+    },
+    "de": {
+      "translation": {
+        "welcome": "Willkommen!",
+        "food": "🥨"
+      }
+    },
+    "fr": {
+      "translation": {
+        "welcome": "Bienvenue!",
+        "food": "🥖"
+      }
+    }
+  }
