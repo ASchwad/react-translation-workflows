@@ -7,7 +7,7 @@ Also contains a small React Native app that uses the react-i18n library to provi
 [<img src="docs/Screenshot_de.png" width="200" />](docs/Screenshot_de.png)
 [<img src="docs/Screenshot_fr.png" width="200" />](docs/Screenshot_fr.png)
 
-Via the `NativeModules`, the device language can be obtained and the app will be automatically translated to the respective language. If the specified language is not available, the app will fallback to English.
+Via the `NativeModules`, the device language can be obtained and the app will be automatically translated to the respective language. If the specified language is not available, the app will fallback to English. The following example shows the app with Spanish (es) as device language - the app is shown in English due to the fallback.  
 
 [<img src="docs/Screenshot_es.png" width="200" />](docs/Screenshot_es.png)
 
